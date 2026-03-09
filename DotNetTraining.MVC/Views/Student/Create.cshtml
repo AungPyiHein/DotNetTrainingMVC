@@ -1,0 +1,27 @@
+﻿@using DataAccess.Models;
+@model TblStudent
+
+<form action="/student/Save" method="post">
+    <div class="mb-3">
+        <label class="form-label">Student Code</label>
+        <input type="text" class="form-control" name="StudentCode">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" name="FirstName">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="LastName">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" name="DateOfBirth">
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Student</button>
+    <a href="/student/Index" class="btn btn-secondary">Cancel</a>
+</form>

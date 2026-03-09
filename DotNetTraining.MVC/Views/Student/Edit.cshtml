@@ -1,0 +1,28 @@
+﻿@using DataAccess.Models;
+@model TblStudent
+
+<form action="/student/update/@Model.StudentId" method="post">
+    <div class="mb-3">
+        <label class="form-label">Student Code</label>
+        <input type="text" class="form-control" name="StudentCode" value="@Model.StudentCode">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" name="FirstName" value="@Model.FirstName">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="LastName" value="@Model.LastName">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" name="DateOfBirth"
+               value="@Model.DateOfBirth.ToString("yyyy-MM-dd")">
+    </div>
+
+    <button type="submit" class="btn btn-warning">Update Student</button>
+    <a href="/student/Index" class="btn btn-secondary">Cancel</a>
+</form>

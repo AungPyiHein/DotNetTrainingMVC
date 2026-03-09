@@ -1,0 +1,41 @@
+﻿@using DataAccess.Models;
+
+@model List<TblStudent>
+
+@{
+    ViewData["Title"] = "Students List";
+}
+
+<h1>Students List</h1>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Create New Student</a>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Student Code</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.StudentCode</td>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                
+                <td>@student.DateOfBirth.ToString("dd-MMM-yyyy")</td>
+                <td>
+                   <a href="/student/edit/@student.StudentId" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/student/delete/@student.StudentId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
