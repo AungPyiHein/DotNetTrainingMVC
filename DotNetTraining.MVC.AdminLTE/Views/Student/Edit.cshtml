@@ -1,0 +1,26 @@
+﻿@using DataAccess.Models;
+
+@model TblStudent
+
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+<div class="card card-warning">
+    <div class="card-header"><h3 class="card-title">Edit Student</h3></div>
+    <form asp-action="Edit">
+        <div class="card-body">
+            <input type="hidden" asp-for="StudentId" />
+            <input type="hidden" asp-for="DeleteFlag" />
+            <div class="form-group"><label asp-for="StudentCode"></label><input asp-for="StudentCode" class="form-control" /><span asp-validation-for="StudentCode" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="FirstName"></label><input asp-for="FirstName" class="form-control" /><span asp-validation-for="FirstName" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="LastName"></label><input asp-for="LastName" class="form-control" /><span asp-validation-for="LastName" class="text-danger"></span></div>
+            <div class="form-group"><label asp-for="DateOfBirth"></label><input asp-for="DateOfBirth" class="form-control" type="date" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" /><span asp-validation-for="DateOfBirth" class="text-danger"></span></div>
+            
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-warning">Save Changes</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
