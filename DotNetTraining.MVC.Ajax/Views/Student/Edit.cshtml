@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Edit Student";
+}
+
+
+<input type="hidden" id="hfStudentId" value="@ViewBag.StudentId" />
+
+<div class="mb-3">
+    <label class="form-label">Student Code</label>
+    <input type="text" class="form-control" id="txtStudentCode">
+</div>
+<div class="mb-3">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" id="txtFirstName">
+</div>
+<div class="mb-3">
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-control" id="txtLastName">
+</div>
+<div class="mb-3">
+    <label class="form-label">Date of Birth</label>
+    <input type="date" class="form-control" id="txtDateOfBirth">
+</div>
+
+<a href="/student" class="btn btn-secondary">Cancel</a>
+<button type="button" class="btn btn-warning" id="btnUpdate">Update Student</button>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            loadStudentForEdit();
+        });
+
+      
+        function loadStudentForEdit() {
+            const studentId = $('#hfStudentId').val();
+            $.ajax({
+                url: `/Student/GetStudent/${studentId}`, 
+                type: "GET",
+                success: function (response) {
+                    
+                    $('#txtStudentCode').val(response.studentCode);
+                    $('#txtFirstName').val(response.firstName);
+                    $('#txtLastName').val(response.lastName);
+
+                   
+                    if (response.dateOfBirth) {
+                        let dob = response.dateOfBirth.split('T')[0];
+                        $('#txtDateOfBirth').val(dob);
+                    }
+                },
+                error: function (xhr) {
+                    console.error("Error loading student: " + xhr.responseText);
+                }
+            });
+        }
+
+      
+        $('#btnUpdate').click(function () {
+            const studentId = $('#hfStudentId').val();
+            const studentData = {
+                StudentCode: $('#txtStudentCode').val(),
+                FirstName: $('#txtFirstName').val(),
+                LastName: $('#txtLastName').val(),
+                DateOfBirth: $('#txtDateOfBirth').val()
+            };
+
+            $.ajax({
+                url: `/Student/Update/${studentId}`,
+                type: "POST",
+                data: studentData,
+                success: function (response) {
+                    alert(response.message);
+                    if (response.isSuccess) {
+                        window.location.href = "/student";
+                    }
+                },
+                error: function (xhr) {
+                    console.error("Error updating student: " + xhr.responseText);
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "New Student";
+}
+
+<h1>New Student</h1>
+
+<div class="mb-3">
+    <label class="form-label">Student Code</label>
+    <input type="text" class="form-control" id="txtStudentCode">
+</div>
+<div class="mb-3">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-control" id="txtFirstName">
+</div>
+<div class="mb-3">
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-control" id="txtLastName">
+</div>
+<div class="mb-3">
+    <label class="form-label">Date of Birth</label>
+    <input type="date" class="form-control" id="txtDateOfBirth">
+</div>
+
+<a href="/student" class="btn btn-secondary">Cancel</a>
+<button type="button" class="btn btn-primary" id="btnSave">Save</button>
+
+@section scripts {
+    <script>
+        $('#btnSave').click(function () {
+            
+            const studentData = {
+                StudentCode: $('#txtStudentCode').val(),
+                FirstName: $('#txtFirstName').val(),
+                LastName: $('#txtLastName').val(),
+                DateOfBirth: $('#txtDateOfBirth').val()
+            };
+
+            $.ajax({
+                url: "/Student/Save", 
+                type: "POST",
+                data: studentData,
+                success: function (response) {
+                    alert(response.message);
+                    if (response.isSuccess) {
+                        
+                        window.location.href = "/student";
+                    }
+                },
+                error: function (xhr) {
+                    console.error("Error saving student: " + xhr.responseText);
+                }
+            });
+        });
+    </script>
+}

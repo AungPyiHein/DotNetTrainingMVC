@@ -1,0 +1,82 @@
+﻿
+
+@{
+    ViewData["Title"] = "Student List";
+}
+
+<h1>Student List</h1>
+<a href="/student/create" class="btn btn-success mb-3">New Student</a>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="studentTableBody">
+        
+    </tbody>
+</table>
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+        loadStudents();
+    });
+
+   
+    function loadStudents() {
+        $.ajax({
+            url: "/Student/List", 
+            type: "GET",
+            success: function (response) {
+                let tableRows = '';
+                
+                response.forEach(item => {
+                    tableRows += `
+                        <tr id="student-row-${item.studentId}">
+                            <td>${item.studentId}</td>
+                            <td>${item.studentCode}</td>
+                            <td>${item.firstName}</td>
+                            <td>${item.lastName}</td>
+                            <td>
+                                <a href="/student/edit/${item.studentId}" class="btn btn-warning btn-sm">Edit</a>
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteStudent(${item.studentId})">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                $('#studentTableBody').html(tableRows);
+            },
+            error: function (xhr) {
+                console.error("Error loading data: " + xhr.responseText);
+            }
+        });
+    }
+
+    
+    function deleteStudent(id) {
+        if (!confirm("Are you sure you want to delete this student?")) {
+            return;
+        }
+
+        $.ajax({
+            url: `/Student/Delete/${id}`, 
+            type: "POST",
+            success: function (response) {
+                alert(response.message);
+                if (response.isSuccess) {
+                    loadStudents();
+                }
+            },
+            error: function (xhr) {
+                console.error("Error deleting: " + xhr.responseText);
+            }
+        });
+    }
+</script>
+}
