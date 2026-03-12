@@ -1,0 +1,6 @@
+@ASPDotNetSerilog_HostAddress = http://localhost:5278
+
+GET {{ASPDotNetSerilog_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

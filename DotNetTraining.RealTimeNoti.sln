@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTraining.RealTimeNoti", "DotNetTraining.RealTimeNoti\DotNetTraining.RealTimeNoti.csproj", "{67E7580D-3C6E-475A-8BDE-418E56FBEA36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67E7580D-3C6E-475A-8BDE-418E56FBEA36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67E7580D-3C6E-475A-8BDE-418E56FBEA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67E7580D-3C6E-475A-8BDE-418E56FBEA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67E7580D-3C6E-475A-8BDE-418E56FBEA36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D9F3223-D783-4922-8875-E2681EC2D76B}
+	EndGlobalSection
+EndGlobal
